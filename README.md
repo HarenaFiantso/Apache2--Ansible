@@ -1,6 +1,6 @@
-# APACHE 2 x ANSIBLE
+# __APACHE 2 x ANSIBLE__
 Nous savons créer des VirtualHosts de façon manuelle avec un script bash auparavant. Cette fois ci, nous allons le faire de façon automatique en utilisant un script dans un fichier d'extension .yaml sur __ANSIBLE.__
-
+***
 <br><br>
 
 ## __1. PREMIERE ETAPE: INSTALLATION__
@@ -49,3 +49,7 @@ pacman -Q | grep ansible
 Cela devrait afficher des informations sur la version d'Ansible installée sur votre système.
 
 Maintenant, vous pouvez utiliser Ansible pour automatiser des tâches de configuration et de déploiement sur vos hôtes cibles.
+***
+<br><br>
+
+## __2. DEUXIEME ETAPE: CREATION DES VIRTUALHOSTS AVEC LES URL DEMANDES__
