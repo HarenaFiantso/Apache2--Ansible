@@ -1,0 +1,47 @@
+# THIS SCRIPT IS USED TO INSTALL APACHE ON THE SERVER USING ANSIBLE SCRIPT
+# TO RUN THIS PROGRAM:
+#   - Open the terminal
+#   - Run the following command:
+#     apache-playbook /path/to/apache_installation.yaml
+
+- name: Installing Apache on the server
+  hosts: httpd
+  remote_user: root
+  vars:
+    domains:
+      - www.hei.school
+      - api.hei.school
+      - front.hei.school
+      - back.hei.school
+
+  tasks:
+    - name: Installing all the tools we should use
+      apt:
+        name: "{{ item }}"
+        update_cache: yes
+        state: latest
+      with_items:
+        - httpd
+
+    - name: Creating the directories for the HTML files
+      command: mkdir /var/www/{{ item }}
+      loop: "{{ domains }}"
+
+    - name: Creating the HTML files of the docs
+      ansible.builtin.template:
+        src: index.html.j2
+        dest: /var/www/{{ item }}/index.html
+      loop: "{{ domains }}"
+
+    - name: Creating VirtualHost Configuration
+      ansible.builtin.template:
+        src: domain.conf.j2
+        dest: /etc/apache2/sites-available/{{ item }}.conf
+      loop: "{{ domains }}"
+
+    - name: Creating Symbolic links
+      command: ln -s /etc/apache2/sites-available/{{ item }}.conf /etc/apache2/sites-enabled/{{ item }}.conf
+      loop: "{{ domains }}"
+
+    - name: Restart Apache server
+      command: /etc/init.d/apache2 restart
