@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+	ServerAdmin admin@{{ item }}
+	ServerName {{ item }}
+	ServerAlias {{ item }}
+	DocumentRoot /var/www/{{ item }}
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+	RewriteEngine On
+	RewriteCond %{HTTP:X-Forwarded-For} ^(.*)$
+	RewriteRule .* - [E=REMOTE_ADDR:%1]
+</VirtualHost>
