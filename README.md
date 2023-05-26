@@ -3,7 +3,7 @@
 We used to create VirtualHosts manually with a bash script before. This time, we will do it automatically using a script in a .yaml file with __ANSIBLE__.
 
 <br><br>
-## 1. FIRST STEP: INSTALLATION
+## INSTALLATION
 _APACHE INSTALLATION_:
 
 The first thing we need to do is to install __APACHE2__ in our operating system (I'm using Manjaro in this case):
