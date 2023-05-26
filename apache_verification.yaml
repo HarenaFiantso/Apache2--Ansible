@@ -1,0 +1,19 @@
+# THIS ANSIBLE SCRIPT IS USED TO VERIFY IF APACHE IS ALREADY INSTALLED
+# TO RUN THIS SCRIPT:
+#   - Open the terminal
+#   - apache-playbook /path/to/apache_verification.yaml
+
+- name: Verify if Apache is already present
+  hosts: localhost
+  become: true
+
+  tasks:
+    - name: Verify if Apache is installed
+      ansible.builtin.command: "which httpd"
+      register: apache_check
+      ignore_errors: true
+
+    - name: Show result
+      debug:
+        msg: "Apache is installed"
+      when: apache_check.rc == 0
