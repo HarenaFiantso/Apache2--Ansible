@@ -54,6 +54,3 @@ pacman -Q | grep ansible
 This should display information about the installed version of Ansible on your system.
 
 Now, you can use Ansible to automate configuration and deployment tasks on your target hosts.
-
-<br><br>
-## 2. SECOND STEP: CREATING VIRTUALHOSTS WITH THE REQUESTED URLS
